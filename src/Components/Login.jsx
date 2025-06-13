@@ -9,6 +9,7 @@ const Login = () => {
 
   const [emailId,setEmailId] = useState("shahid@gmail.in");
   const [password,setPassword] = useState("Shahid@123");
+  const [error , setError] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,11 +23,13 @@ const Login = () => {
       },{withCredentials:true});
       dispatch(addUser(res.data));
       navigate('/');
-      console.log(res.data);
+      // console.log(res.data);
       
     }
     catch(err){
-      console.error(err);
+      console.log(err);
+      
+      setError(err?.message || "something went wrong!");
       
     }
   }
@@ -94,6 +97,7 @@ const Login = () => {
               title="Must be more than 8 characters, including number, lowercase letter, uppercase letter, speacial character"
             />
           </label>
+          <p className="text-red-700 bg-blue-50 w-80 rounded-sm px-2">{error}</p>
           <p className="validator-hint hidden">
             Minimum 8 characters, including
             <br />
