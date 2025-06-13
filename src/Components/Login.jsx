@@ -27,7 +27,6 @@ const Login = () => {
       
     }
     catch(err){
-      console.log(err);
       
       setError(err?.message || "something went wrong!");
       
