@@ -37,7 +37,6 @@ const EditProfile = ({user}) => {
             setTimeout(() => {
                 setShowToast(false)
             }, 3000);
-            console.log(res.data);
             
         }
         catch(err){
@@ -138,15 +137,15 @@ const EditProfile = ({user}) => {
         <div className='m-2 live-card-update'>
         
       <div className="card bg-cyan-200 text-black w-60 items-center ">
-        <div className='w-48 h-48'>
-            < img src={photoUrlState} alt=""  className='w-48 h-48 m-2 rounded-md'/>
+        <div className='flex justify-center'>
+            < img src={photoUrlState} alt=""  className='w-52 h-48 m-2 rounded-md'/>
         </div>
-  <div className="card-body   items-center text-center">
+  <div className="text-1 mx-2 font-medium">
     <h2 className="card-title">{firstNameState+" "+lastNameState}</h2>
     {ageState&& genderState&&<p className='font-medium'>{ageState+", "+genderState}</p>}
-    <p>{aboutState}</p>
-    <p>{skillsState}</p>
-    <div className="card-actions justify-end w-52">
+    <p className='font-normal'>{aboutState}</p>
+    <p className='font-normal'>{skillsState}</p>
+    <div className="card-actions justify-end w-52 m-2">
       <button className="btn btn-secondary">Intrested</button>
       <button className="btn btn-primary">Ignore</button>
     </div>
