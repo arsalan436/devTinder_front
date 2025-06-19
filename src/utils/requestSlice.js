@@ -9,7 +9,7 @@ const RequestSlice = createSlice({
             return action.payload;
         },
         removeRequest:(state,action)=>{
-            const newArr = state.filter(r=>r._id !== action.payload);
+            const newArr = state.filter(user=>user._id !== action.payload);
             return newArr;
         }
     }
