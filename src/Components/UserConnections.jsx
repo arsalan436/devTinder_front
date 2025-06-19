@@ -35,7 +35,7 @@ const UserConnections = () => {
     
   return (
     <>
-    <h1 className='text-center font-semibold text-3xl mt-2'>Connections</h1>
+    <h1 className='text-center font-semibold text-3xl mt-2'>Your connections</h1>
     <div className='flex flex-wrap  justify-center my-3 '>
         
       {connections.map((connection)=>{

@@ -4,6 +4,7 @@ import Login from "./Components/Login"
 import Profile from "./Components/Profile"
 import Feed from "./Components/Feed"
 import UserConnections from "./Components/UserConnections"
+import Requests from "./Components/Requests"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/profile" element={<Profile/>}></Route>
           <Route path="/user/connections" element={<UserConnections/>}></Route>
+          <Route path="/requests" element={<Requests/>}></Route>
         </Route>
       </Routes>
 
