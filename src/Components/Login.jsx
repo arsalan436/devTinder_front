@@ -4,12 +4,16 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/Constants";
+import { addFeed } from "../utils/feedSlice";
 
 const Login = () => {
 
-  const [emailId,setEmailId] = useState("shahid@gmail.in");
-  const [password,setPassword] = useState("Shahid@123");
+  const [emailId,setEmailId] = useState("");
+  const [password,setPassword] = useState("");
+  const [firstName,setFirstName] = useState("");
+  const [lastName,setLastName] = useState("");
   const [error , setError] = useState('');
+  const [user,setUser] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,13 +26,24 @@ const Login = () => {
       },{withCredentials:true});
       dispatch(addUser(res.data));
       navigate('/');
-      // console.log(res.data);
-      
+
+      navigate('/');
     }
     catch(err){
-      
-      setError(err?.message || "something went wrong!");
-      
+      setError(err?.respaonse?.data|| err?.message || "something went wrong!");
+    }
+  }
+
+
+  const handleSignUp = async ()=>{
+    try{
+      const res = await axios.post(BASE_URL+"/signup",{
+        firstName,lastName,emailId,password},{withCredentials:true});
+        dispatch(addUser(res.data.data));
+        navigate("/profile");
+    }
+    catch(err){
+      setError(err?.respaonse?.data|| err?.message || "something went wrong!");
     }
   }
 
@@ -37,8 +52,36 @@ const Login = () => {
     <div className="flex justify-center items-center mt-6">
       <div className="card bg-primary text-primary-content w-96">
         <div className="card-body">
-          <h2 className="card-title">Login</h2>
+          <h2 className="card-title">{user?"Login":"Sign Up"}</h2>
+          <p>{!user?"already a user: ":"don`t have an account: "}<a onClick={()=>setUser(!user)} className="cursor-pointer font-semibold">{!user?"Sign In":"Sign Up"}</a></p>
           {/*  */}
+          
+          {!user &&  <label data-theme="light" className="input validator my-2">
+            <input
+              value={firstName}
+              onChange={e=>setFirstName(e.target.value)}
+              type="text"
+              minLength={2}
+              maxLength={26}
+              placeholder="Enter first Name"
+              required
+            />
+          </label>}
+          <div className="validator-hint hidden">Must contain 2-26 characters</div>
+
+          {!user && <label data-theme="light" className="input validator my-2">
+            <input
+              value={lastName}
+              onChange={e=>setLastName(e.target.value)}
+              type="text"
+              minLength={2}
+              maxLength={26}
+              placeholder="Enter last Name"
+              required
+            />
+          </label>}
+          <div className="validator-hint hidden">Must contain 2-26 characters</div>
+
           <label data-theme="light" className="input validator my-2">
             <svg
               className="h-[1em] opacity-50"
@@ -66,7 +109,8 @@ const Login = () => {
             />
           </label>
           <div className="validator-hint hidden">Enter valid email address</div>
-          {/*  */}
+          
+
           <label data-theme="light" className="input validator mb-2">
             <svg
               className="h-[1em] opacity-50"
@@ -105,9 +149,12 @@ const Login = () => {
             <br />
             At least one special character
           </p>
-          {/*  */}
+          
           <div className="card-actions justify-center">
-            <button onClick={handleLogin} className="btn">Login</button>
+            {user?
+            (<button onClick={handleLogin} className="btn">Login</button>):
+            (<button onClick={handleSignUp} className="btn">Sign Up</button>)
+            }
           </div>
         </div>
       </div>

@@ -25,12 +25,9 @@ const Requests = () => {
         try{
             const res = await axios.get(BASE_URL+"/user/request/recieved",{withCredentials:true})
             dispatch(addRequests(res.data.data))
-            console.log(res.data.data);
             
         }
         catch(err){
-            console.log("this is error from request page");
-            console.log(err.message)
             
         }
     }

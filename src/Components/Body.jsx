@@ -13,7 +13,7 @@ const Body = () => {
 
   const userData  = useSelector((store)=>store.user);
   const fetchUser = async () => {
-    if(userData) return;
+    if(userData?._id) return;
     try {
       
             const res = await axios.get(BASE_URL + "/profile/view", {
@@ -24,11 +24,13 @@ const Body = () => {
 
       
     } catch (err) {
-      if(err.status === 401){
+      if(err?.response?.status === 401){
 
         navigate('/login')
       }
-      console.error(err);
+      else{
+        console.error("Fetch failed:", err.message);
+      }
     }
     
   };
