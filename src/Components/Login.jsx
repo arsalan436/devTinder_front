@@ -30,7 +30,8 @@ const Login = () => {
       navigate('/');
     }
     catch(err){
-      setError(err?.respaonse?.data|| err?.message || "something went wrong!");
+          const errorMsg = err.response?.data?.message || "Something went wrong!";
+          setError(errorMsg);
     }
   }
 
