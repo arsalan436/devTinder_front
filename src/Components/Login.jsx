@@ -43,7 +43,7 @@ const Login = () => {
         navigate("/profile");
     }
     catch(err){
-      setError(err?.respaonse?.data|| err?.message || "something went wrong!");
+      setError(err?.response?.data|| err?.message || "something went wrong!");
     }
   }
 
@@ -139,7 +139,7 @@ const Login = () => {
               title="Must be more than 8 characters, including number, lowercase letter, uppercase letter, speacial character"
             />
           </label>
-          <p className="text-red-700 bg-blue-50 w-80 rounded-sm px-2">{error}</p>
+          <p className="text-red-700 bg-blue-50 w-80 rounded-sm px-2">{error.message||error}</p>
           <p className="validator-hint hidden">
             Minimum 8 characters, including
             <br />
