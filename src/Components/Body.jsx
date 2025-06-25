@@ -29,6 +29,7 @@ const Body = () => {
         navigate('/login')
       }
       else{
+        
         console.error("Fetch failed:", err.message);
       }
     }

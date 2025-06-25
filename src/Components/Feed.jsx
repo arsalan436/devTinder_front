@@ -23,7 +23,9 @@ useEffect(() => {
         dispatch(addFeed(res.data));
     }
     catch(err){
-      console.error(res.message);
+      if (import.meta.env.MODE !== "production") {
+          console.error("Some error", err.message);
+      }
     }
 
   }

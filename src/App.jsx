@@ -5,6 +5,7 @@ import Profile from "./Components/Profile"
 import Feed from "./Components/Feed"
 import UserConnections from "./Components/UserConnections"
 import Requests from "./Components/Requests"
+import Chat from "./Components/Chat"
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/profile" element={<Profile/>}></Route>
           <Route path="/user/connections" element={<UserConnections/>}></Route>
           <Route path="/requests" element={<Requests/>}></Route>
+          <Route path="/chat/:targetUserId" element={<Chat/>}></Route>
         </Route>
       </Routes>
 
