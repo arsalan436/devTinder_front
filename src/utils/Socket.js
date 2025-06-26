@@ -2,7 +2,7 @@ import io from "socket.io-client";
 import { SOCKET_URL } from "./Constants";
 
 export const createSocketConnection = (token = null) => {
-  return io(SOCKET_URL, {
+  return io(`${import.meta.env.VITE_BACKEND_URL}`, {// thisis for netlify
     transports: ["websocket"],         // Enforce websocket (no polling fallback)
     reconnection: true,                // Try to reconnect on disconnect
     reconnectionAttempts: 5,           // Number of reconnection tries
