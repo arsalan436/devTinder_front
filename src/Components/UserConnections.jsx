@@ -52,7 +52,7 @@ const UserConnections = () => {
             <div className=' bg-cyan-200'>
             <div className="text-[0.9rem] mx-2 font-medium">
                 <p>{firstName + " "+ lastName} </p>
-                {age&& gender&& <p>{age + " "+ gender} </p>}
+                {<p>{age + " "+ gender} </p>}
                 <p className='font-normal'>{about} </p>
             </div>
             <Link to={`/chat/${_id}`} ><button className='btn btn-secondary w-[60%] mx-auto flex my-2'>Message</button></Link>
